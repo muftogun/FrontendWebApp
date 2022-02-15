@@ -1,3 +1,18 @@
 ﻿body
 {
 }
+
+.icon-bar {
+    background-color: black;
+}
+
+.navbar-head {
+    background-color: lightcoral;
+    height: auto;
+}
+.content-section {
+    background-color: antiquewhite;
+    margin: 10px 0 5px 0;
+    padding: 5px 10px 5px 10px;
+    height: 700px;
+}

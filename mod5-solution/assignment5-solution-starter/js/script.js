@@ -22,6 +22,7 @@ var menuItemsUrl =
   "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
 var menuItemHtml = "snippets/menu-item.html";
+var aboutHtml = "snippets/about.html";
 
 // Convenience function for inserting innerHTML for 'select'
 var insertHtml = function (selector, html) {
@@ -102,7 +103,6 @@ function buildAndShowHomeHTML (categories) {
       // Pay attention to what type of data that function returns vs what the chosenCategoryShortName
         // variable's name implies it expects.
         var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
-        console.log(chosenCategoryShortName)
 
 
       // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
@@ -156,9 +156,39 @@ dc.loadMenuItems = function (categoryShort) {
   $ajaxUtils.sendGetRequest(
     menuItemsUrl + categoryShort,
     buildAndShowMenuItemsHTML);
-};
+    };
 
+ // Load the about page
+dc.loadAboutPage = function () {
+  showLoading("#main-content");
+  $ajaxUtils.sendGetRequest(
+      aboutHtml,
+      buildAndShowAboutHTML,
+      false);
+    };
 
+// Builds HTML for about page
+function buildAndShowAboutHTML(aboutPageHtml) {
+    // Loop over stars
+    var rating = randomNumber();
+    var html = aboutPageHtml;
+    for (var i = 1; i <= 5; i++) {
+        var className = "star" + i;
+        if (i <= rating) {
+            html = insertProperty(html, className, "fa fa-star");
+        } else {
+            html = insertProperty(html, className, "fa fa-star-o");
+        }
+    }
+
+    html = insertProperty(html, "rating", rating + "-star rating");
+    insertHtml("#main-content", html);
+}
+
+function randomNumber() {
+    return Math.ceil(Math.random() * 5);
+}
+ 
 // Builds HTML for the categories page based on the data
 // from the server
 function buildAndShowCategoriesHTML (categories) {

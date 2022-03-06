@@ -8,20 +8,25 @@
       .message { font-size: 1.3em; font-weight: bold; }
     </style>
   </head>
-<body>
-   <div class="container">
+<script src="angular.min.js"></script>
+<script src="app.js"></script>
+<body  ng-app="LunchCheck">
+   <div class="container" ng-controller="LunchCheckController">
      <h1>Lunch Checker</h1>
 
          <div class="form-group">
              <input id="lunch-menu" type="text"
              placeholder="list comma separated dishes you usually have for lunch"
-             class="form-control">
+             class="form-control" ng-model="lunchItems" ng-style="{ border: 'solid '+ fontBorderColor}">
          </div>
          <div class="form-group">
-             <button class="btn btn-default">Check If Too Much</button>
+             <p>An empty item (ie ', ,') is not considered towards the count of items.</p>
          </div>
-         <div class="form-group message">
-           <!-- Your message can go here. -->
+         <div class="form-group">
+             <button class="btn btn-default" ng-click="checkAmount();">Check If Too Much</button>
+         </div>
+         <div class="form-group message" ng-style="{color: fontBorderColor}">
+           {{message}}
          </div>
    </div>
 

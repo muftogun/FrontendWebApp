@@ -14,9 +14,7 @@
 
         $scope.checkAmount = function () {
             var arrItems = $scope.lunchItems.split(',');
-            arrItems = arrItems.filter(x => x && !x.trim().match(/^\s*$/));
-
-            console.log(arrItems);
+            arrItems = arrItems.filter(x => x && !x.match(/^\s+$/));
 
             if ($scope.lunchItems < 1) {
                 $scope.message = "Please enter data first";

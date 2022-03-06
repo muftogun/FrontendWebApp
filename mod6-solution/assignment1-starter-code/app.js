@@ -14,7 +14,7 @@
 
         $scope.checkAmount = function () {
             var arrItems = $scope.lunchItems.split(',');
-            arrItems = arrItems.filter(x => x && !x.match(/\s+/));
+            arrItems = arrItems.filter(x => x && !x.match(/^\s+$/));
 
             console.log(arrItems);
 

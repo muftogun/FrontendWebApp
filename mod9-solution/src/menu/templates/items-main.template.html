@@ -1,0 +1,14 @@
+<a ui-sref="home">Home</a> &lt; <a ui-sref="categories">Categories</a> &lt; <span>{{itemsList.category}}</span>
+
+<h3>List of {{itemsList.category}} Items</h3>
+
+<!--<ul>
+    <li ng-repeat="item in itemsList.items">
+    </li>
+</ul>-->
+
+<items items="itemsList.items"></items>
+
+<ui-view></ui-view>
+
+

@@ -1,0 +1,60 @@
+﻿<div class="container">
+    <h2 class="text-center">Sign Up for Newsletter!</h2>
+    <fieldset id="sign-up-form">
+        <legend>Registration Form</legend>
+        <form name="signUpForm">
+            <input type="text" name="firstname" placeholder="First Name"
+                   ng-model="signUpCtrl.user.firstname"
+                   required> <br>
+            <span ng-if="signUpForm.firstname.$error.required && signUpForm.firstname.$touched">
+                First name must be entered
+            </span>
+            <br>
+
+            <input type="text" name="lastname" placeholder="Last Name"
+                   ng-model="signUpCtrl.user.lastname"
+                   required> <br>
+            <span ng-if="signUpForm.lastname.$error.required && signUpForm.lastname.$touched">
+                Last name must be entered
+            </span>
+            <br>
+
+            <input type="email" name="email" placeholder="Email"
+                   ng-model="signUpCtrl.user.email"
+                   required> <br>
+            <span ng-if="signUpForm.email.$invalid && signUpForm.email.$touched">
+                Must be a valid email address: handle@domain format
+            </span>
+            <br>
+
+            <input type="text" name="phone" placeholder="Phone ###-###-####"
+                   ng-model="signUpCtrl.user.phone"
+                   pattern="(\d{3})-(\d{3})-(\d{4})"
+                   required> <br>
+            <span ng-if="signUpForm.phone.$invalid && signUpForm.phone.$touched">
+                Phone must be in the format ###-###-####.
+            </span>
+            <br>
+
+            <input type="text" name="dish" placeholder="Favorite Dish (Short Name)"
+                   ng-model="signUpCtrl.user.dish"
+                   ng-change="signUpCtrl.validateDish()"
+                   required> <br>
+            <span ng-if="(signUpForm.dish.$error.required || !signUpCtrl.user.dishValid) && signUpForm.dish.$touched">
+                No such menu number exists.
+            </span>
+            <br>
+
+            <span ng-if="signUpCtrl.completed && signUpForm.$valid">
+                Your information has been saved.
+            </span>
+
+            <br>
+
+            <button ng-disabled="signUpForm.$invalid || !signUpCtrl.user.dishValid"
+                    ng-click="signUpCtrl.submit()">
+                Sign Up
+            </button>
+        </form>
+    </fieldset>
+</div>

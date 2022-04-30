@@ -1,0 +1,26 @@
+﻿<div class="container">
+    <div ng-if="(userInfoCtrl.user | json) != '{}'">
+        <h2 class="text-center">
+            Registered Info
+        </h2>
+
+        <h3>
+            Name: {{ userInfoCtrl.user.firstName }} {{ userInfoCtrl.user.lastName }}
+        </h3>
+        <h3>
+            Email: {{ userInfoCtrl.user.email }}
+        </h3>
+        <h3>
+            Phone: {{ userInfoCtrl.user.phone }}
+        </h3>
+
+        <h3>
+            Favorite Dish: {{ userInfoCtrl.user.faveDish.short_name }}
+        </h3>
+        <fave-dish menu-item="userInfoCtrl.user.faveDish">
+        </fave-dish>
+    </div>
+    <div ng-if="(userInfoCtrl.user | json) == '{}'">
+        <h2 class="text-center"> Not Signed Up Yet. <a ui-sref="public.signup">Sign Up Now! </a></h2>
+    </div>
+</div>
